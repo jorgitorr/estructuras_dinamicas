@@ -100,6 +100,7 @@ public class E1 {
             System.out.println("---------------------------------------------");
             
             pos = sc.nextInt();
+            
             switch(pos){
                 case 1:
                     e.mostrarList();
@@ -141,6 +142,7 @@ public class E1 {
                     System.out.println("valor cambiador");
                     valor2 = sc.nextInt();
                     e.cambiarValor2(valor, valor2);
+                    break;
                 case 0:
                     System.out.println("Saliendo...");
                     break;
