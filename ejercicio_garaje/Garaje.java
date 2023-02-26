@@ -38,12 +38,19 @@ public class Garaje {
     }
     
     
-    public void getCochesReparados(){
-        Collections.sort(cochesReparados, new ComparadorCoches());//ordena coches
+    public void ordenaCochesEImprime(String tipo_ordenacion){
+        if(tipo_ordenacion.equalsIgnoreCase("matricula"))
+            Collections.sort(cochesReparados, new ComparadorCochesMatricula());
+        else if(tipo_ordenacion.equalsIgnoreCase("direccion"))
+            Collections.sort(cochesReparados, new CompararCocheDireccion());
         
-        for(Coche coche: cochesReparados){
-            System.out.println(coche);
-        }
+        imprimeCoches();
     }
+    
+    private void imprimeCoches(){
+        for(Coche coche: cochesReparados)
+            System.out.println(coche);
+    }
+    
     
 }

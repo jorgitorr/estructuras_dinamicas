@@ -10,7 +10,7 @@ import java.util.Comparator;
  *
  * @author jorge
  */
-public class ComparadorCoches implements Comparator<Coche>{
+public class ComparadorCochesMatricula implements Comparator<Coche>{
 
     @Override
     public int compare(Coche c1, Coche c2) {
@@ -19,7 +19,13 @@ public class ComparadorCoches implements Comparator<Coche>{
     
     
     public int compararDireccion(Coche c1, Coche c2){
-        return c1.getDireccionDuenio().compareToIgnoreCase(c2.getDireccionDuenio());
+        int ordenDireccion;
+        if(c1.getDireccionDuenio()==c2.getDireccionDuenio())
+            ordenDireccion = c1.getMatricula().compareToIgnoreCase(c2.getMatricula());
+        else
+            ordenDireccion = c1.getDireccionDuenio().compareToIgnoreCase(c2.getDireccionDuenio());
+        
+        return ordenDireccion;
     }
     
 }
