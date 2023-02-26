@@ -5,6 +5,7 @@
 package ejercicio_garaje;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -34,6 +35,15 @@ public class Garaje {
             }
         }
         return cocheDevuelto;
+    }
+    
+    
+    public void getCochesReparados(){
+        Collections.sort(cochesReparados, new ComparadorCoches());//ordena coches
+        
+        for(Coche coche: cochesReparados){
+            System.out.println(coche);
+        }
     }
     
 }
