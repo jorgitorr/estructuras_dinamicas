@@ -20,7 +20,7 @@ public class GestionGaraje {
         Reparacion reparacion;
         Coche coche;
         
-        String descripcion, matricula, direccionDueno;
+        String descripcion, matricula, direccionDueno, palabra;
         int kms;
         
         do{
@@ -45,22 +45,35 @@ public class GestionGaraje {
                     descripcion = sc.nextLine();
                     System.out.println("Introduce los kms de la reparacion: ");
                     kms = sc.nextInt();
-                    reparacion = new Reparacion(descripcion, kms);
+                    sc.nextLine();
                     System.out.println("----------------------------------");
                     System.out.println("Introduce la matricula del coche");
                     matricula = sc.nextLine();
+                    
                     coche = garaje.buscaCoche(matricula);
+                    reparacion = new Reparacion(descripcion, kms);
+                    coche.anadeReparacion(reparacion);
                     break;
                 case 2://ULTIMA REPARACION
                     System.out.println("Introduce la matricula del coche");
                     matricula = sc.nextLine();
                     coche = garaje.buscaCoche(matricula);
-                    //queda
+
+                    if(coche!=null){
+                        reparacion = coche.ultimaReparacion();
+                        System.out.println(reparacion);
+                    }else
+                        System.out.println("No hay reparaciones");
                     break;
                 case 3://BUSCAR
                     System.out.println("Introduce la matricula del coche");
                     matricula = sc.nextLine();
+                    System.out.println("Introduce la palabra clave");
+                    palabra = sc.nextLine();
                     //queda
+                    coche = garaje.buscaCoche(matricula);
+                    reparacion = coche.buscaReparaciones(palabra);//quiza tenga que cambiarlo
+                    System.out.println(reparacion);
                     break;
                 case 4://ANADIR
                     System.out.println("Introduce la matricula del coche");
@@ -71,6 +84,7 @@ public class GestionGaraje {
                     garaje.anadeCoche(coche);
                     break;
                 case 5://LISTAR POR MATRICULA
+                    garaje.getCochesReparados();
                     break;
                 case 6://LISTAR POR DIRECCION
                     break;

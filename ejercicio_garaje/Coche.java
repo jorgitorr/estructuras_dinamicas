@@ -18,11 +18,13 @@ public class Coche {
     private String matricula;
     private String direccionDuenio;
     private List<Reparacion>reparaciones;
+    private List<Coche>cochesReparados;
 
     public Coche(String matricula, String direccionDuenio) {
         this.matricula = matricula;
         this.direccionDuenio = direccionDuenio;
         this.reparaciones = new ArrayList<>();
+        this.cochesReparados = new ArrayList<>();
     }
 
     public String getMatricula() {
@@ -33,7 +35,7 @@ public class Coche {
         return direccionDuenio;
     }
     
-    private Reparacion buscaReparaciones(String palabra){
+    public Reparacion buscaReparaciones(String palabra){
         Reparacion r = null;
         for(Reparacion reparacion: reparaciones){
             if(reparacion.equals(palabra)){
@@ -44,19 +46,26 @@ public class Coche {
         return r;
     }
     
-    private Reparacion ultimaReparacion(){
+    public Reparacion ultimaReparacion(){
         return reparaciones.get(reparaciones.size()-1);
     }
     
     
     
-    private boolean checkIntroducir(Reparacion r){
+    private boolean checkIntroducirCocheReparado(Coche c){
         boolean puede = true;
-        for(Reparacion reparacion: reparaciones){
-            if(r.compareTo(reparacion)!=0)
-                puede = false;
-        }
+        //tengo que hacerlo
         return puede;
+    }
+    
+    
+    private boolean checkIntroducirReparacion(Reparacion r){
+        boolean introducir = true;
+        if(reparaciones.size()>0)
+            if(reparaciones.get(reparaciones.size()-1).getKms()>r.getKms())
+                introducir = false;
+        
+        return introducir;
     }
     
 
@@ -65,17 +74,18 @@ public class Coche {
      * @param r 
      */
     
-    private void anadeReparacion(Reparacion r, boolean puede){
-        if(puede)
+    public void anadeReparacion(Reparacion r){
+        if(checkIntroducirReparacion(r))
             reparaciones.add(r);
         else
-            System.out.println("No puede introducir la reparacion de este coche "
-                    + "ya que este coche ya tiene una matrícula registrada");
+            System.out.println("La reparacion tiene un kilometraje inferior al de la ultima reparacion realizada");
+    }
+
+    @Override
+    public String toString() {
+        return "{matricula=" + matricula + ", direccionDuenio=" + direccionDuenio + ", reparaciones=" + reparaciones + '}';
     }
     
     
-    
-  
-
     
 }
