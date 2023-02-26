@@ -7,7 +7,6 @@ package ejercicio_garaje;
 
 import ejercicio_garaje.Reparacion;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**
