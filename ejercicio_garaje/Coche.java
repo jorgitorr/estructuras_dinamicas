@@ -35,22 +35,20 @@ public class Coche {
         return direccionDuenio;
     }
     
-    public Reparacion buscaReparaciones(String palabra){
-        Reparacion r = null;
-        for(Reparacion reparacion: reparaciones){
-            if(reparacion.equals(palabra)){
-                r = reparacion;
-                break;
-            }
-        }
-        return r;
+    public List<Reparacion> buscaReparaciones(String palabra){
+        List<Reparacion>reparacionesCoche = new ArrayList<>();
+        
+        for(Reparacion reparacion: reparaciones)
+            if(reparacion.getDescripcion().contains(palabra))
+                reparacionesCoche.add(reparacion);
+        
+        
+        return reparacionesCoche;
     }
-    
+
     public Reparacion ultimaReparacion(){
         return reparaciones.get(reparaciones.size()-1);
     }
-    
-    
     
     private boolean checkIntroducirCocheReparado(Coche c){
         boolean puede = true;

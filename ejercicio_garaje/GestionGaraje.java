@@ -4,6 +4,8 @@
  */
 package ejercicio_garaje;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Scanner;
  */
 public class GestionGaraje {
     
+    
     public static void main(String[] args) {
         int opcion;
         Scanner sc = new Scanner(System.in);
@@ -19,6 +22,7 @@ public class GestionGaraje {
         Garaje garaje = new Garaje();
         Reparacion reparacion;
         Coche coche;
+        List<Reparacion>listareparaciones = new ArrayList<>();
         
         String descripcion, matricula, direccionDueno, palabra;
         int kms;
@@ -51,8 +55,10 @@ public class GestionGaraje {
                     matricula = sc.nextLine();
                     
                     coche = garaje.buscaCoche(matricula);
-                    reparacion = new Reparacion(descripcion, kms);
-                    coche.anadeReparacion(reparacion);
+                    if(coche!=null){
+                        reparacion = new Reparacion(descripcion, kms);
+                        coche.anadeReparacion(reparacion);
+                    }
                     break;
                 case 2://ULTIMA REPARACION
                     System.out.println("Introduce la matricula del coche");
@@ -69,11 +75,16 @@ public class GestionGaraje {
                     System.out.println("Introduce la matricula del coche");
                     matricula = sc.nextLine();
                     System.out.println("Introduce la palabra clave");
-                    palabra = sc.nextLine();
-                    //queda
+                    palabra = sc.nextLine();//descripcion de la reparacion
                     coche = garaje.buscaCoche(matricula);
-                    reparacion = coche.buscaReparaciones(palabra);//quiza tenga que cambiarlo
-                    System.out.println(reparacion);
+                    if(coche!=null){
+                        listareparaciones = coche.buscaReparaciones(palabra);
+                        if(listareparaciones!=null){
+                            for(Reparacion r: listareparaciones){
+                                System.out.println(r);
+                            }
+                        }
+                    }
                     break;
                 case 4://ANADIR
                     System.out.println("Introduce la matricula del coche");
@@ -84,9 +95,10 @@ public class GestionGaraje {
                     garaje.anadeCoche(coche);
                     break;
                 case 5://LISTAR POR MATRICULA
-                    garaje.getCochesReparados();
+                    garaje.ordenaCochesEImprime("matricula");
                     break;
                 case 6://LISTAR POR DIRECCION
+                    garaje.ordenaCochesEImprime("direccion");
                     break;
                 case 7:
                     System.out.println("Saliendo...");
