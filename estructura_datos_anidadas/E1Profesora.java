@@ -17,13 +17,13 @@ public class E1Profesora {
 
     public static Map<Integer, Set<String>> split(Set<String> set) {
       
-    Map<Integer, Set<String>> map = new HashMap<>();
-    for (String s : set) {
-        int lenght = s.length();
-        if (!map.containsKey(lenght))
-            map.put(lenght, new HashSet<>());
-        map.get(lenght).add(s);
-    }
+        Map<Integer, Set<String>> map = new HashMap<>();
+        for (String s : set) {
+            int lenght = s.length();
+            if (!map.containsKey(lenght))
+                map.put(lenght, new HashSet<>());
+            map.get(lenght).add(s);
+        }
     
     return map;
   }

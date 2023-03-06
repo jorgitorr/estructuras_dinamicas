@@ -35,10 +35,10 @@ public class E2 {
     private Map<String,Set<List<String>>> acronimos(Set<List<String>>set){
         String acronimo;
         for(List<String>list: set){
-            acronimo = acronimoPara(list);
+            acronimo = acronimoPara(list);//saco el acronimo de cada lista
             if(!mapa.containsKey(acronimo))
                 mapa.put(acronimo,new HashSet<>());
-            mapa.get(acronimo).add(list);
+            mapa.get(acronimo).add(list);//añado la lista al set
         }            
         return mapa;
     }
